@@ -1,8 +1,35 @@
-<!DOCTYPE HTML><html>
-  <head>
-    <title>for template module</title>
-  </head>
-  <body>
-    <h1>Hey everyone can you hear me?</h1>
-  </body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+<div class="container my-3">
+    <table class="table">
+        <thead>
+        <tr class="table-dark">
+            <th>index</th>
+            <th>title</th>
+            <th>writer</th>
+            <th>views</th>
+            <th>context</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if post_list %}
+        {% for post in post_list %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>
+                {{ post[1] }}
+            </td>
+            <td>{{ post[2] }}</td>
+            <td>{{ post[3] }}</td>
+            <td>{{ post[4] }}</td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="3">no post.</td>
+        </tr>
+        {% endif %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

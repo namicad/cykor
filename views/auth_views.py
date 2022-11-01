@@ -8,6 +8,10 @@ from werkzeug.utils import redirect
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
+# @bp.route('/signup')
+# def signup():
+    
+
 
 # @bp.route('/signup/', methods=('GET', 'POST'))
 # def signup():
