@@ -1,11 +1,12 @@
-from flask import Flask, render_template
+from flask import Flask
 
-def create_app():
-    app = Flask(__name__)
+app = Flask(__name__)
 
-    @app.route('/')
-    def home():
-#        return render_template('home.html')
-        return 'hello, pybo!'
+from .views import main_views, question_views, answer_views, auth_views
 
-    return app
+app.register_blueprint(main_views.bp)
+# app.register_blueprint(question_views.bp)
+# app.register_blueprint(answer_views.bp)
+# app.register_blueprint(auth_views.bp)
+
+app.run(debug=True)
