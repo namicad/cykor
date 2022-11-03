@@ -54,7 +54,7 @@ def detail(index):
     return render_template('post/post_detail.html', data=data, edit_en=edit_en, index=index)
 
 
-@bp.route('/detail/<int:index>/<int:sw>', methods=('GET','POST'))
+@bp.route('/detail/<int:index>/<int:sw>', methods=('GET','POST'))  # type: ignore
 def change(index, sw):
     pre_data = mod_dbconn.board()[index-1]
 
