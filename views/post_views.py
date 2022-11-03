@@ -39,6 +39,10 @@ def detail(index):
     data = mod_dbconn.board()[index-1]
 
     if request.method == 'POST':
+        if 'userId' not in session:
+            flash("login first!")
+            return render_template('auth/login.html')
+        
         if data[1] == session['userId']:
             edit_en = True
 
@@ -57,6 +61,10 @@ def change(index, sw):
     print(pre_data)
     if request.method == 'POST':
         #delete
+        if 'userId' not in session:
+            flash("login first!")
+            return render_template('auth/login.html')
+
         if pre_data[1] == session['userId']:
             if sw==0:
                 mod_dbconn.board_delete(pre_data)
