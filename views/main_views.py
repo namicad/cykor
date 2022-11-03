@@ -10,3 +10,8 @@ def index():
 
     data_list = mod_dbconn.board()
     return render_template('post/post_list.html', post_list=data_list)
+
+    
+@bp.route('/index.html')
+def index_default():
+    return redirect(url_for('main.index'))
