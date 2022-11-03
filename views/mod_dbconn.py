@@ -28,10 +28,10 @@ def board_post(set):
     return 1
 
 def check_id(set):
-    sql = "select * from account where id=(?)"
-    cur.execute(sql,set[0])
+    sql = "select * from account where id=?"
+    cur.execute(sql,(set[0],))
     if cur.fetchall():
-        sql = "select * from account where id=(?) and pw=(?)"
+        sql = "select * from account where id=? and pw=?"
         cur.execute(sql, set)
 
         if cur.fetchall():

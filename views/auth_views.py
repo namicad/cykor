@@ -12,7 +12,7 @@ def login():
         id = request.form['id']
         pw = request.form['pw']
 
-        if(mod_dbconn.check_id((id,pw))):
+        if(mod_dbconn.check_id((id,pw)) == 2):
             session['userId'] = id
             flash("login success!")
             return redirect(url_for('main.index'))
