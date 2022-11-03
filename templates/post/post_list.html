@@ -7,8 +7,7 @@
             <th>index</th>
             <th>title</th>
             <th>writer</th>
-            <th>views</th>
-            <th>context</th>
+            <th>content</th>
         </tr>
         </thead>
         <tbody>
@@ -16,20 +15,19 @@
         {% for post in post_list %}
         <tr>
             <td>{{ loop.index }}</td>
-            <td>
-                {{ post[1] }}
+            <td>{{ post[0] }}</td>
+            <td>{{ post[1] }}</td>
+            <td><a href= "{{ url_for('post.detail', index=loop.index) }}">{{ post[2] }}</a>
             </td>
-            <td>{{ post[2] }}</td>
-            <td>{{ post[3] }}</td>
-            <td>{{ post[4] }}</td>
         </tr>
         {% endfor %}
         {% else %}
         <tr>
-            <td colspan="3">게시글이 없습니다.</td>
+            <td colspan="3">no post</td>
         </tr>
         {% endif %}
         </tbody>
     </table>
+     <a href="{{ url_for('post.create') }}" class="btn btn-primary" style="float:right">add post</a>
 </div>
 {% endblock %}

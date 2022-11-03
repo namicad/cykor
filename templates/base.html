@@ -8,9 +8,18 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
     <!-- pybo CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <title>Hello, cykor!</title>
 </head>
 <body>
+    {% for mesg in get_flashed_messages() %}
+    <script>alert("{{ mesg }}")</script>
+    {% endfor %}
+    <a href="{{ url_for('main.index') }}" class="btn btn-primary">list</a>
+    {% if session['userId'] %}
+    <a href="{{ url_for('auth.logout') }}" class="btn btn-secondary">logout</a>
+    <h5>hello, {{session['userId']}}</h5>
+    {% else %}
+    <a href="{{ url_for('auth.login') }}" class="btn btn-primary">login</a>
+    {% endif %}
 <!-- base template insert Start -->
 {% block content %}
 {% endblock %}

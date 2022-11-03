@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <h5 class="my-3 border-bottom pb-2">edit post</h5>
+    <div id="write_area">
+        <form enctype="multipart/form-data" action="\post\detail\{{index}}" method="post">
+            <div id="in_title">
+                {% if edit_en %}
+                <textarea name="title" id="utitle" rows="1" cols="55" placeholder="title" maxlength="100" required wrap="virtual">{{data[0]}}</textarea>
+                {% else %}
+                <textarea name="title1" id="utitle" rows="1" cols="55" placeholder="title" maxlength="100" required wrap="virtual" disabled>{{data[0]}}</textarea>
+                {% endif %}
+            </div>
+            <div class="wi_line"></div>
+            <div id="in_content">
+                {% if edit_en %}
+                <textarea name="content" id="ucontent" placeholder="content" required rows="10" cols="55" wrap="physical">{{data[2]}}</textarea>
+                {% else %}
+                <textarea name="content1" id="ucontent" placeholder="content" required rows="10" cols="55" wrap="physical" disabled>{{data[2]}}</textarea>
+                {% endif %}
+            </div>
+            <div name="index", value="index"></div>
+            {% if edit_en %}
+            {% else %}
+            <button name="but" type="submit" class="btn btn-info">edit</button>
+            {% endif %}
+
+            {% if edit_en %}
+            <button name="but" type="submit" class="btn btn-success" formaction="\post\detail\{{index}}\1">submit</button>
+            {% else %}
+            {% endif %}
+            <button type="submit" class="btn btn-danger" formaction="\post\detail\{{index}}\0">delete</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

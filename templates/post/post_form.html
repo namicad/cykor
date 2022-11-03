@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <h5 class="my-3 border-bottom pb-2">add question</h5>
+    <div id="write_area">
+        <form enctype="multipart/form-data" action="\post\create" method="post">
+            <div id="in_title">
+                <textarea name="title" id="utitle" rows="1" cols="55" placeholder="title" maxlength="100" required wrap="virtual"></textarea>
+            </div>
+            <div class="wi_line"></div>
+            <div id="in_content">
+                <textarea name="content" id="ucontent" placeholder="content" required rows="10" cols="55" wrap="physical"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

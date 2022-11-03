@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <h5 class="my-3 border-bottom pb-2">login</h5>
+    <div id="write_area">
+        <form enctype="multipart/form-data" action="\auth\login" method="post">
+            ID : <input type="text" name="id"><br>
+            PW : <input type="password" name="pw"><br>
+            <button type="submit" class="btn btn-primary">login</button>
+        </form>
+        <a href="{{ url_for('auth.register') }}" class="btn btn-secondary">register</a>
+    </div>
+</div>
+{% endblock %}
