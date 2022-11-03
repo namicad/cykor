@@ -1,7 +1,9 @@
 import pymysql 
+import sqlite3
 
 #\c root@localhost
-db = pymysql.connect(host='localhost', user='root', password='kh0103', db='free_board', charset='utf8')
+#db = pymysql.connect(host='localhost', user='root', password='0000', db='free_board', charset='utf8')
+db = sqlite3.connect("./cykor/views/cykor.db", isolation_level=None, check_same_thread=False)
 cur = db.cursor() 
 
 def board():
@@ -20,16 +22,16 @@ def board_size():
     return size[0]
 
 def board_post(set):
-    sql = "INSERT INTO board (title, writer, content) VALUES (%s, %s, %s)"
+    sql = "INSERT INTO board (title, writer, content) VALUES (?, ?, ?)"
     cur.execute(sql, set)
 
     return 1
 
 def check_id(set):
-    sql = "select * from account where id=(%s)"
+    sql = "select * from account where id=(?)"
     cur.execute(sql,set[0])
     if cur.fetchall():
-        sql = "select * from account where id=(%s) and pw=(%s)"
+        sql = "select * from account where id=(?) and pw=(?)"
         cur.execute(sql, set)
 
         if cur.fetchall():
@@ -41,20 +43,20 @@ def check_id(set):
     return 0
 
 def reg(set):
-    sql = "INSERT INTO account (id, pw) VALUES (%s, %s)"
+    sql = "INSERT INTO account (id, pw) VALUES (?, ?)"
     cur.execute(sql, set)
 
     return 1
 
 
 def board_edit(af_set, be_set):
-    sql = "UPDATE board SET title = %s, content = %s WHERE title=%s and writer=%s and content=%s"
+    sql = "UPDATE board SET title = ?, content = ? WHERE title=? and writer=? and content=?"
     cur.execute(sql, af_set + be_set)
 
     return 1
 
 def board_delete(set):
-    sql = "DELETE from board where title=%s and writer=%s and content=%s"
+    sql = "DELETE from board where title=? and writer=? and content=?"
     cur.execute(sql, set)
     
     return 1
